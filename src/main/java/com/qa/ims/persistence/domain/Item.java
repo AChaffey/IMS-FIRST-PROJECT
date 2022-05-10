@@ -12,6 +12,12 @@ public class Item {
 		this.id = id;
 		this.itemName = itemName;
 		this.price = price;
+		
+	}
+	public Item(String itemName, Double price) {
+		super();
+		this.itemName = itemName;
+		this.price = price;
 	}
 	public Long getId() {
 		return id;

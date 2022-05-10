@@ -1,11 +1,16 @@
 package com.qa.ims.controller;
 
-import java.lang.System.Logger;
-import java.util.logging.LogManager;
 
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.qa.ims.persistence.dao.ItemDAO;
+import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.Utils;
 
-public class ItemController implements CrudController <items> {
+public class ItemController implements CrudController <Item> {
 
 	public static final Logger LOGGER = LogManager.getLogger();
 
@@ -17,4 +22,49 @@ public class ItemController implements CrudController <items> {
 		this.itemDAO = itemDAO;
 		this.utils = utils;
 	}
+
+	@Override
+	public List<Item> readAll() {
+		List<Item> items = itemDAO.readAll();
+		for (Item item : items) {
+			LOGGER.info(item);
+		}
+		return items;
+	}
+
+	
+	@Override
+	public Item create() {
+		LOGGER.info("Please enter an Item");
+		String itemName = utils.getString();
+		LOGGER.info("Please enter a Price");
+		Double price = utils.getDouble();
+		Item item = itemDAO.create(new Item(itemName, price));
+		LOGGER.info("Item created");
+		return item;
+	}
+
+
+	@Override
+	public Item update() {
+		LOGGER.info("Please enter the id of the item you would like to update");
+		Long id = utils.getLong();
+		LOGGER.info("Please enter an item name");
+		String itemName = utils.getString();
+		LOGGER.info("Please enter an item price");
+		Double price = utils.getDouble();
+		Item item = itemDAO.update(new Item(id, itemName, price));
+		LOGGER.info("Customer Updated");
+		return item;
+	}
+
+	
+	@Override
+	public int delete() {
+		LOGGER.info("Please enter the id of the item you would like to delete");
+		Long id = utils.getLong();
+		return itemDAO.delete(id);
+	}
+
 }
+
