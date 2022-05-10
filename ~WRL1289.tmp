@@ -13,12 +13,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-The first thing needed to be able to replicate this project would be an account on github. Here you will be able to 
-
 In order to be able to replicate the methods used in this application there are some software that needs to be downloaded and installed.
-First we should start with MYSQL. Following this mysql link should enable you to be able to download the application and enable you to install it on your device.- this download and installation will enable you to have the facilities to create databases and tables and more, it can also be linked with Java to utilised those databases you’ve created.
-
-You will also need to download and install Java using this link for Java windows however you can select the tab for macOS and Linux. Once you have downloaded it simply click on the downloaded file and follow the instructions- here you will be able to create the source code needed for applications, websites etc.
+First we should start with MYSQL. Folllowing this link should enable you to be able to download the application and by following the screenshots, enable you to install it on your device.X
 
 ### Installing
 
