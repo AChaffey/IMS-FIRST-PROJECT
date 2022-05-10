@@ -4,51 +4,41 @@ import java.util.Objects;
 
 public class Item {
 
-	private int id;
+	private Long id;
 	private String itemName;
-	private int price;
-	
-	public Item(int id, String itemName, int price) {
+	private Double price;
+	public Item(Long id, String itemName, Double price) {
 		super();
 		this.id = id;
 		this.itemName = itemName;
 		this.price = price;
 	}
-
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getItemName() {
 		return itemName;
 	}
-
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
-
-	public int getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-
-	public void setPrice(int price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
-
 	@Override
 	public String toString() {
 		return "Item [id=" + id + ", itemName=" + itemName + ", price=" + price + "]";
 	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, itemName, price);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -58,7 +48,9 @@ public class Item {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		return id == other.id && Objects.equals(itemName, other.itemName) && price == other.price;
+		return Objects.equals(id, other.id) && Objects.equals(itemName, other.itemName)
+				&& Objects.equals(price, other.price);
 	}
+	
 	
 }
