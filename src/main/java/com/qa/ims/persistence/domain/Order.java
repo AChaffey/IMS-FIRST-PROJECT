@@ -8,6 +8,7 @@ public class Order {
 	
 	private Long id;
 	private Long customerId;
+	private Double price;
 	private List<Item> orderItems = new ArrayList<>();
 	public Order(Long id, Long customerId, List<Item> orderItems) {
 		super();
@@ -23,6 +24,14 @@ public class Order {
 		super();
 		this.id = id;
 		this.customerId = customerId;
+	}
+	
+	
+	public Order(Long id, Long customerId, Double price) {
+		super();
+		this.id = id;
+		this.customerId = customerId;
+		this.setPrice(price);
 	}
 	public Long getId() {
 		return id;
@@ -61,6 +70,12 @@ public class Order {
 		Order other = (Order) obj;
 		return Objects.equals(customerId, other.customerId) && Objects.equals(id, other.id)
 				&& Objects.equals(orderItems, other.orderItems);
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 	
 }

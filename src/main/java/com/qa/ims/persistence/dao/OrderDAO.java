@@ -10,26 +10,37 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.DBUtils;
 
 public class OrderDAO implements Dao<Order> {
 
-	private ItemDAO itemDAO;
 	private CustomerDAO customerDAO;
+	private ItemDAO itemDAO;
+
 	
 	public static final Logger LOGGER = LogManager.getLogger();
+
 	public OrderDAO(ItemDAO itemDAO, CustomerDAO customerDAO) {
-	super(); 
-	this.itemDAO= itemDAO;
-	this.customerDAO= customerDAO;
+		super();
+		this.itemDAO = itemDAO;
+		this.customerDAO = customerDAO;
 	}
+
 	@Override
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		Long customer_id = resultSet.getLong("id");
+		List<Item> items = getItems(id);
 
-		return new Order(id, customer_id);
+		return new Order(id, customer_id, items);
+	}
+
+	private List<Item> getItems(Long id) {
+		
+		return null;
 	}
 
 	@Override
@@ -99,7 +110,7 @@ public class OrderDAO implements Dao<Order> {
 				PreparedStatement statement = connection
 						.prepareStatement("UPDATE orders SET id = ?, item_price = ? WHERE id = ?");) {
 			statement.setLong(1, item.getId());
-			statement.setLong(2, item.getCustomer_id());
+			statement.setLong(2, item.getCustomerId());
 			statement.executeUpdate();
 			return read(item.getId());
 		} catch (Exception e) {
@@ -121,14 +132,33 @@ public class OrderDAO implements Dao<Order> {
 		}
 		return 0;
 	}
-
-	public Order addItem (Long orderId, Long itemId) {
-
+	public int deleteOrderLines(Long orderId, Long itemId) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection
+						.prepareStatement("DELETE FROM order_items (order_id, item_id) VALUES (?, ?)")){
+			statement.setLong(1, orderId);
+			statement.setLong(2, itemId);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return 0;
 	}
-
 	
-		
-		
+	public Order addItem(Long orderId, Long itemId) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				PreparedStatement statement = connection
+						.prepareStatement("INSERT INTO order_items (order_id, item_id) VALUES (?, ?)")){
+			statement.setLong(1, orderId);
+			statement.setLong(2, itemId);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return null;
+	}
 	
-
 }
+

@@ -1,10 +1,8 @@
 package com.qa.ims.controller;
 
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.utils.Utils;
@@ -36,11 +34,11 @@ public class OrderController implements CrudController<Order> {
 		LOGGER.info("Please enter Customer ID");
 		Long customer_id = utils.getLong();
 		Order order = orderDAO.create(new Order(customer_id));
-//		LOGGER.info("Would you like to add an item to your Order? ");
-//		LOGGER.info("Yes or No? ");
-//
-//		String newItem = utils.getString();
-//		addItem(newItem);
+		LOGGER.info("Would you like to add an item to your Order? ");
+		LOGGER.info("Yes or No? ");
+
+		String newItem = utils.getString();
+		addItem(newItem);
 		return order;
 	}
 
@@ -72,10 +70,29 @@ public class OrderController implements CrudController<Order> {
 		return null;
 	}
 
-	
+//	public List<Item> getItems(Long Id) {
+//		List<Long> itemIds = new ArrayList<>();
+//		try (Connection connection = DBUtils.getInstance().getConnection();
+//				Statement statement = connection.createStatement();
+//				ResultSet resultSet = statement.executeQuery("SELECT * FROM order_items WHERE fk_item_id = " + Id);) {
+//			while(resultSet.next());
+//			{
+//				itemIds.add(resultSet.getLong("fk_item_id"));
+//			}
+//		} catch (Exception e) {
+//			LOGGER.debug(e);
+//			LOGGER.error(e.getMessage());
+//		}
+//		List<Item> itemList = new ArrayList<>();
+//		for (Long i : itemIds) {
+//			itemList.add(itemDAO.read(i)));
+//		}
+//		return itemList;
 
+	
 	@Override
 	public Order update() {
+		
 		LOGGER.info("Please enter the id of the order you would like to update");
 		Long id = utils.getLong();
 		LOGGER.info("Please enter a new order number");
@@ -83,7 +100,7 @@ public class OrderController implements CrudController<Order> {
 		LOGGER.info("Please enter a new order price");
 		Double price = utils.getDouble();
 		Order order = orderDAO.update(new Order(id, orderNum, price));
-		LOGGER.info("Customer Updated");
+		LOGGER.info("Order Updated");
 		return order;
 	}
 
