@@ -33,11 +33,11 @@ public class ItemControllerTest {
 	@Test
 	public void testCreate() {
 		final String itemName = "bacon";
-		final Double price = 2.99;
-		final Item created = new Item(itemName, price);
+		final Double itemPrice = 2.99;
+		final Item created = new Item(itemName, itemPrice);
 
 		Mockito.when(utils.getString()).thenReturn(itemName);
-		Mockito.when(utils.getDouble()).thenReturn(price);
+		Mockito.when(utils.getDouble()).thenReturn(itemPrice);
 		Mockito.when(dao.create(created)).thenReturn(created);
 
 		assertEquals(created, controller.create());
@@ -65,7 +65,7 @@ public class ItemControllerTest {
 		
 		Mockito.when(this.utils.getLong()).thenReturn(updated.getId());
 		Mockito.when(this.utils.getString()).thenReturn(updated.getItemName());
-		Mockito.when(this.utils.getDouble()).thenReturn(updated.getPrice());
+		Mockito.when(this.utils.getDouble()).thenReturn(updated.getItemprice());
 		Mockito.when(this.dao.update(updated)).thenReturn(updated);
 
 		assertEquals(updated, this.controller.update());

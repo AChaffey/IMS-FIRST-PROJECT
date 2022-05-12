@@ -6,45 +6,55 @@ public class Item {
 
 	private Long id;
 	private String itemName;
-	private Double price;
-	public Item(Long id, String itemName, Double price) {
+	private Double itemprice;
+
+	public Item(String itemName, Double itemprice) {
+		super();
+		this.itemName = itemName;
+		this.itemprice = itemprice;
+	}
+
+	public Item(Long id, String itemName, Double itemprice) {
 		super();
 		this.id = id;
 		this.itemName = itemName;
-		this.price = price;
-		
+		this.itemprice = itemprice;
 	}
-	public Item(String itemName, Double price) {
-		super();
-		this.itemName = itemName;
-		this.price = price;
-	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getItemName() {
 		return itemName;
 	}
+
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
-	public Double getPrice() {
-		return price;
+
+	public Double getItemprice() {
+		return itemprice;
 	}
-	public void setPrice(Double price) {
-		this.price = price;
+
+	public void setItemprice(Double itemprice) {
+		this.itemprice = itemprice;
 	}
+
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", item_name=" + itemName + ", item_price=" + price + "]";
+		return "Item [id=" + id + ", itemName=" + itemName + ", itemprice=" + itemprice + "]";
 	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, itemName, price);
+		return Objects.hash(id, itemName, itemprice);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -55,8 +65,7 @@ public class Item {
 			return false;
 		Item other = (Item) obj;
 		return Objects.equals(id, other.id) && Objects.equals(itemName, other.itemName)
-				&& Objects.equals(price, other.price);
+				&& Objects.equals(itemprice, other.itemprice);
 	}
-	
-	
+
 }

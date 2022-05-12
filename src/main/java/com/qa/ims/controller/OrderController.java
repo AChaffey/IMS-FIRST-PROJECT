@@ -32,82 +32,59 @@ public class OrderController implements CrudController<Order> {
 	@Override
 	public Order create() {
 		LOGGER.info("Please enter Customer ID");
-		Long customer_id = utils.getLong();
-		Order order = orderDAO.create(new Order(customer_id));
-		LOGGER.info("Would you like to add an item to your Order? ");
-		LOGGER.info("Yes or No? ");
-
-		String newItem = utils.getString();
-		addItem(newItem);
+		Long customerId = utils.getLong();
+		Order order = orderDAO.create(new Order(customerId));
+		LOGGER.info("Order created");
 		return order;
 	}
 
-	public Order addItem(String newItem) {
-		Order updatedOrder=null;
-		boolean boo = true;
-
-		while (boo) {
-			LOGGER.info("Please enter a Item ID");
-			Long itemId = utils.getLong();
-			LOGGER.info("Please enter your Order ID");
-			Long orderId = utils.getLong();
-			updatedOrder = this.orderDAO.addItem(itemId, orderId);
-			LOGGER.info(" Item added to your order");
-			LOGGER.info("Yes or no?");
-			LOGGER.info("Would you like to add more to your items?");
-			String addMore = utils.getString();
-
-			if (addMore.toLowerCase().equals("no")) {
-				boo = false;
-
-				return updatedOrder;
-			} else {
-
-				
+	@Override
+	public Order update() {
+		boolean bool = true;
+		Order updatedOrder = null;
+		while (bool) {
+			LOGGER.info("Would you like to add or remove and item in your order? Type Break to Exit");
+			String input = utils.getString();
+			if (input.toLowerCase().equals("add")) {
+				LOGGER.info("Which order would you like to add to?");
+				Long orderId = utils.getLong();
+				LOGGER.info("Which item would you like to add to this order?");
+				Long itemId = utils.getLong();
+				orderDAO.addItem(orderId, itemId);
+				LOGGER.info("Would you like to add another item?");
+				String addMore = utils.getString();
+				if (addMore.toLowerCase().equals("yes")) {
+					updatedOrder = orderDAO.addItem(orderId, itemId);
+				} else {
+					bool = false;
+					return updatedOrder;
+				}
+			} else if (input.toLowerCase().equals("remove")) {
+				LOGGER.info("Which order would you like to remove from?");
+				Long orderId = utils.getLong();
+				LOGGER.info("Which item would you like to remove from this order?");
+				Long itemId = utils.getLong();
+				orderDAO.deleteItem(orderId, itemId);
+				LOGGER.info("Would you like to add another item?");
+				String addMore = utils.getString();
+				if (addMore.toLowerCase().equals("no")) {
+					updatedOrder = orderDAO.addItem(orderId, itemId);
+				} else {
+					bool = false;
+					return updatedOrder;
+				}
+			} else if (input.toLowerCase().equals("break")) {
+				bool = false;
 				return updatedOrder;
 			}
 		}
-		return null;
-	}
-
-//	public List<Item> getItems(Long Id) {
-//		List<Long> itemIds = new ArrayList<>();
-//		try (Connection connection = DBUtils.getInstance().getConnection();
-//				Statement statement = connection.createStatement();
-//				ResultSet resultSet = statement.executeQuery("SELECT * FROM order_items WHERE fk_item_id = " + Id);) {
-//			while(resultSet.next());
-//			{
-//				itemIds.add(resultSet.getLong("fk_item_id"));
-//			}
-//		} catch (Exception e) {
-//			LOGGER.debug(e);
-//			LOGGER.error(e.getMessage());
-//		}
-//		List<Item> itemList = new ArrayList<>();
-//		for (Long i : itemIds) {
-//			itemList.add(itemDAO.read(i)));
-//		}
-//		return itemList;
-
-	
-	@Override
-	public Order update() {
-		
-		LOGGER.info("Please enter the id of the order you would like to update");
-		Long id = utils.getLong();
-		LOGGER.info("Please enter a new order number");
-		Long orderNum = utils.getLong();
-		LOGGER.info("Please enter a new order price");
-		Double price = utils.getDouble();
-		Order order = orderDAO.update(new Order(id, orderNum, price));
-		LOGGER.info("Order Updated");
-		return order;
+		return updatedOrder;
 	}
 
 	@Override
 	public int delete() {
 		LOGGER.info("Please enter the id of the order you would like to delete");
-	Long id = utils.getLong();
+		Long id = utils.getLong();
 		return orderDAO.delete(id);
 	}
 

@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS orders (
 id int NOT NULL AUTO_INCREMENT,
 customer_id int,
 PRIMARY KEY (id),
-FOREIGN KEY (customer_id) REFERENCES customers (id));
+FOREIGN KEY (customer_id) REFERENCES customers (id) ON DELETE CASCADE);
 
 CREATE TABLE IF NOT EXISTS order_items(
 id int NOT NULL AUTO_INCREMENT,
@@ -26,6 +26,6 @@ order_id int NOT NULL,
 item_id int NOT NULL,
 
 PRIMARY KEY (id),
-FOREIGN KEY (order_id) REFERENCES orders (id),
-FOREIGN KEY (item_id) REFERENCES items (id)
+FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE,
+FOREIGN KEY (item_id) REFERENCES items (id) ON DELETE CASCADE 
 );

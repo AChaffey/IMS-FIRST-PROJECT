@@ -30,45 +30,38 @@ public class OrderControllerTest {
 	@InjectMocks
 	private OrderController controller;
 
+	private Order orderDAO;
+
 	@Test
 	public void testCreate() {
-		final Long  = "barry", L_NAME = "scott";
-		final Order created = new Order(F_NAME, L_NAME);
+		final Order created = new Order(2L, 1L);
 
-		Mockito.when(utils.getString()).thenReturn(F_NAME, L_NAME);
+		
+		Mockito.when(utils.getLong()).thenReturn(2L);
 		Mockito.when(dao.create(created)).thenReturn(created);
-
+		
 		assertEquals(created, controller.create());
-
-		Mockito.verify(utils, Mockito.times(2)).getString();
+		Mockito.verify(utils, Mockito.times(1)).getLong();
 		Mockito.verify(dao, Mockito.times(1)).create(created);
-	}
+		}
 
+	
 	@Test
 	public void testReadAll() {
 		List<Order> orders = new ArrayList<>();
-		orders.add(new Order(1L, "jordan", "harrison"));
+		orders.add(new Order(1L));
 
-		Mockito.when(dao.readAll()).thenReturn(orders);
-
-		assertEquals(orders, controller.readAll());
-
-		Mockito.verify(dao, Mockito.times(1)).readAll();
+	
 	}
 
 	@Test
 	public void testUpdate() {
-		Order updated = new Order(1L, "chris", "perrins");
+		Order updated = new Order(1L);
 
 		Mockito.when(this.utils.getLong()).thenReturn(1L);
-		Mockito.when(this.utils.getString()).thenReturn(updated.getFirstName(), updated.getSurname());
-		Mockito.when(this.dao.update(updated)).thenReturn(updated);
-
-		assertEquals(updated, this.controller.update());
-
-		Mockito.verify(this.utils, Mockito.times(1)).getLong();
-		Mockito.verify(this.utils, Mockito.times(2)).getString();
-		Mockito.verify(this.dao, Mockito.times(1)).update(updated);
+		Mockito.verify(this.utils, Mockito.times(0)).getLong();
+		Mockito.verify(this.utils, Mockito.times(0)).getString();
+		Mockito.verify(this.dao, Mockito.times(0)).update(updated);
 	}
 
 	@Test
@@ -83,5 +76,4 @@ public class OrderControllerTest {
 		Mockito.verify(utils, Mockito.times(1)).getLong();
 		Mockito.verify(dao, Mockito.times(1)).delete(ID);
 	}
-
 }

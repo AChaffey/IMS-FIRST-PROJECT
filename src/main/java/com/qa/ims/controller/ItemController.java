@@ -1,6 +1,5 @@
 package com.qa.ims.controller;
 
-
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -10,7 +9,7 @@ import com.qa.ims.persistence.dao.ItemDAO;
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.Utils;
 
-public class ItemController implements CrudController <Item> {
+public class ItemController implements CrudController<Item> {
 
 	public static final Logger LOGGER = LogManager.getLogger();
 
@@ -32,18 +31,16 @@ public class ItemController implements CrudController <Item> {
 		return items;
 	}
 
-	
 	@Override
 	public Item create() {
 		LOGGER.info("Please enter an Item");
 		String itemName = utils.getString();
 		LOGGER.info("Please enter a Price");
-		Double price = utils.getDouble();
-		Item item = itemDAO.create(new Item(itemName, price));
+		Double itemPrice = utils.getDouble();
+		Item item = itemDAO.create(new Item(itemName, itemPrice));
 		LOGGER.info("Item created");
 		return item;
 	}
-
 
 	@Override
 	public Item update() {
@@ -58,7 +55,6 @@ public class ItemController implements CrudController <Item> {
 		return item;
 	}
 
-	
 	@Override
 	public int delete() {
 		LOGGER.info("Please enter the id of the item you would like to delete");
@@ -67,4 +63,3 @@ public class ItemController implements CrudController <Item> {
 	}
 
 }
-

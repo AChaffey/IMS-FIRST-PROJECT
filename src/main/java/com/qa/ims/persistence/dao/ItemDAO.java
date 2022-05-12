@@ -17,7 +17,7 @@ import com.qa.ims.utils.DBUtils;
 
 public class ItemDAO implements Dao<Item> {
 	public void addItem(Order order) {
-		
+
 	}
 
 	public static final Logger LOGGER = LogManager.getLogger();
@@ -66,7 +66,7 @@ public class ItemDAO implements Dao<Item> {
 				PreparedStatement statement = connection
 						.prepareStatement("INSERT INTO items(item_name, item_price) VALUES (?, ?)");) {
 			statement.setString(1, item.getItemName());
-			statement.setDouble(2, item.getPrice());
+			statement.setDouble(2, item.getItemprice());
 			statement.executeUpdate();
 			return readLatest();
 		} catch (Exception e) {
@@ -77,7 +77,7 @@ public class ItemDAO implements Dao<Item> {
 	}
 
 	@Override
-	public Item read(Long id ) {
+	public Item read(Long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection.prepareStatement("SELECT * FROM items WHERE id = ?");) {
 			statement.setLong(1, id);
@@ -98,7 +98,7 @@ public class ItemDAO implements Dao<Item> {
 				PreparedStatement statement = connection
 						.prepareStatement("UPDATE items SET item_name = ?, item_price = ? WHERE id = ?");) {
 			statement.setString(1, item.getItemName());
-			statement.setDouble(2, item.getPrice());
+			statement.setDouble(2, item.getItemprice());
 			statement.setLong(3, item.getId());
 			statement.executeUpdate();
 			return read(item.getId());
@@ -121,7 +121,5 @@ public class ItemDAO implements Dao<Item> {
 		}
 		return 0;
 	}
-
-
 
 }

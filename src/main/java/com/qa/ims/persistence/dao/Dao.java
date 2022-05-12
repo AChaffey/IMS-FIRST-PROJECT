@@ -4,11 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-
 public interface Dao<T> {
 
 	List<T> readAll();
-	
+
 	T read(Long id);
 
 	T create(T t);
@@ -19,5 +18,4 @@ public interface Dao<T> {
 
 	T modelFromResultSet(ResultSet resultSet) throws SQLException;
 
-	
 }
