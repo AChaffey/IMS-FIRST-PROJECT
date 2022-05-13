@@ -1,4 +1,3 @@
-Coverage: 34%
 # IMS Project 1.
 
 This projects aim is to be able to utilise an application in which users can Create, Read, Update, and Delete into specific tables. These tables include 'customers', 'items' and 'orders'.
@@ -22,10 +21,16 @@ GitBash:
 
 To be able to do the above you can download git bash, this is a terminal like stated above where you can push your code to github.com. you can download git bash here (https://git-scm.com/downloads)
 
+![Git](https://user-images.githubusercontent.com/103578276/168322003-294287f8-3bd9-4f30-87c8-5cb1fe5c0951.png)
+
+
 MySQL:
 
 In order to be able to replicate the methods used in this application there are some software that needs to be downloaded and installed.
 First, we should start with MYSQL. Following this mysql link (https://dev.mysql.com/downloads/mysql/8.0.html) should enable you to be able to download the application and enable you to install it on your device. - this download and installation will enable you to have the facilities to create databases and tables and more, it can also be linked with Java to utilised those databases you’ve created.
+
+![Mysql](https://user-images.githubusercontent.com/103578276/168321970-df1fceb4-53c1-4323-ac6d-728296f7e239.png)
+
 
 Java:
 
@@ -50,6 +55,7 @@ A step by step series of examples that tell you how to get a development env run
 Step 1- first you're going to need to install an IDE, I would recommend eclipse because of its ease as mentioned above there is a link where you can install and download it and once it is downloaded it should look like this.
 
 
+![elclipse IDE](https://user-images.githubusercontent.com/103578276/168321367-eaef7796-d041-48c9-8906-580f9b9dbbe7.png)
 
 
 Step 2- step two you going to go ahead and install Java. I have got version 16.  
@@ -58,23 +64,18 @@ Step 2- step two you going to go ahead and install Java. I have got version 16.
 Step 3- next you are going to want to install maven. This will enable you to build your application once it is complete. 
 
 
-
 Step 4- for this you're going to want to go to github.com can you go into create an account
+
+
+![starting a project](https://user-images.githubusercontent.com/103578276/168321889-e677290f-78b1-4554-acc1-91d80fc2ace7.png)
 
 
 Step 5- ensure that you have Git also downloaded, remembering this is a terminal you use and GitHub is what stores your code I'm where you can push your code using repository’s you can create.
 
+![Git branches](https://user-images.githubusercontent.com/103578276/168321474-89a89aef-86d7-4752-9528-194f22937e0e.png)
 
 
 Step 6- once you have linked your GitHub with your terminal you can now go into eclipse and begin creating your first project.
-
-
-
-
-
-
-
-
 
 
 ## Running the tests
@@ -82,6 +83,9 @@ Step 6- once you have linked your GitHub with your terminal you can now go into 
 You can test your application either after you finished or are you going. you will need to write the code for the testing and then you will need to run the unit testing on the file or on the folder in which you want to test. you can do this by right clicking going down to where it says run as and clicking unit testing.
 
 If your test is passed you should find it looks like this.
+
+
+![passed test](https://user-images.githubusercontent.com/103578276/168321720-1ab6ff0d-8b84-4737-9da8-235d09ef7900.png)
 
 
 ## Deployment
@@ -97,9 +101,6 @@ Read this application it must be maven packaged. you can do this by opening up y
 * [Jira] (https://www.atlassian.com/software/jira) -User stories
 * [MySQL Server] (https://www.mysql.com/) – database server
 * [Junit] (https://junit.org/junit4/) – Test runner
-* 
-
-
 
 ## Authors
 
@@ -108,6 +109,6 @@ Read this application it must be maven packaged. you can do this by opening up y
 
 ## Acknowledgments
 
-* Pawel
+* Pawel Stypulkowski
 * Inspiration from 22AprEnable Cohort
 
