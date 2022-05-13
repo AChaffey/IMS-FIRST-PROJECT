@@ -51,7 +51,7 @@ public class Order {
 	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
-
+	
 	public List<Item> getOrderItems() {
 		return orderItems;
 	}

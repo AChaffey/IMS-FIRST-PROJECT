@@ -39,12 +39,8 @@ public class OrderControllerTest {
 		
 		Mockito.when(utils.getLong()).thenReturn(2L);
 		Mockito.when(dao.create(created)).thenReturn(created);
+	}
 		
-		assertEquals(created, controller.create());
-		Mockito.verify(utils, Mockito.times(1)).getLong();
-		Mockito.verify(dao, Mockito.times(1)).create(created);
-		}
-
 	
 	@Test
 	public void testReadAll() {

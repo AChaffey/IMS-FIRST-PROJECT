@@ -27,7 +27,7 @@ public class OrderDAO implements Dao<Order> {
 		this.itemDAO = itemDAO;
 		this.customerDAO = customerDAO;
 	}
-
+	
 	@Override
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");

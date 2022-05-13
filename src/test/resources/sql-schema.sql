@@ -1,7 +1,7 @@
 DROP TABLE order_items;  
- DROP TABLE orders;
- DROP TABLE items; 
- DROP TABLE customers;
+DROP TABLE orders;
+DROP TABLE items; 
+DROP TABLE customers;
 CREATE TABLE IF NOT EXISTS customers (
 id int NOT NULL AUTO_INCREMENT,
 first_name VARCHAR (50) NOT NULL,

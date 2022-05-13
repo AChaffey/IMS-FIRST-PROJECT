@@ -19,7 +19,7 @@ public class OrderController implements CrudController<Order> {
 		this.orderDAO = orderDAO;
 		this.utils = utils;
 	}
-
+	
 	@Override
 	public List<Order> readAll() {
 		List<Order> orders = orderDAO.readAll();
@@ -50,28 +50,28 @@ public class OrderController implements CrudController<Order> {
 				Long orderId = utils.getLong();
 				LOGGER.info("Which item would you like to add to this order?");
 				Long itemId = utils.getLong();
-				orderDAO.addItem(orderId, itemId);
-				LOGGER.info("Would you like to add another item?");
+				updatedOrder = orderDAO.addItem(orderId, itemId);
+				LOGGER.info("Would you like to make another change to your order?");
 				String addMore = utils.getString();
 				if (addMore.toLowerCase().equals("yes")) {
-					updatedOrder = orderDAO.addItem(orderId, itemId);
+					bool = true;
 				} else {
 					bool = false;
-					return updatedOrder;
+				
 				}
 			} else if (input.toLowerCase().equals("remove")) {
 				LOGGER.info("Which order would you like to remove from?");
 				Long orderId = utils.getLong();
 				LOGGER.info("Which item would you like to remove from this order?");
 				Long itemId = utils.getLong();
-				orderDAO.deleteItem(orderId, itemId);
-				LOGGER.info("Would you like to add another item?");
+				updatedOrder = orderDAO.addItem(orderId, itemId);
+				LOGGER.info("Would you like to make another change to your order?");
 				String addMore = utils.getString();
-				if (addMore.toLowerCase().equals("no")) {
-					updatedOrder = orderDAO.addItem(orderId, itemId);
+				if (addMore.toLowerCase().equals("yes")) {
+					bool = true;
 				} else {
 					bool = false;
-					return updatedOrder;
+					
 				}
 			} else if (input.toLowerCase().equals("break")) {
 				bool = false;
